@@ -1,5 +1,7 @@
 <?php require_once "includes/header.php" ?>
 
+<?php include_once 'includes/config.php' ?>
+
 <?php
 //Import PHPMailer classes into the global namespace
 //These must be at the top of your script, not inside a function
@@ -37,11 +39,11 @@ if(isset($_POST['email'])) {
       // $mail->SMTPDebug = 2; // Very helpful!!!!
 
       // mailtrap settings are working
-      $mail->Host       = 'smtp.mailtrap.io';  //Set the SMTP server to send through
+      $mail->Host       = MAIL_HOST;  //Set the SMTP server to send through
       $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-      $mail->Username   = 'f89e63b7d47ea7'; 
+      $mail->Username   = MAIL_USERNAME; 
                   //SMTP username
-      $mail->Password   = '7558e7aac2af37';  //SMTP password
+      $mail->Password   = MAIL_PASSWORD;  //SMTP password
       
       $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         //Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
       $mail->Port       = 587;                                    //TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
@@ -60,7 +62,7 @@ if(isset($_POST['email'])) {
       // http://localhost/CodeWithDary/login-register-system/resetPassword.php?code=12341234
 
       $mail->isHTML(true);                                  //Set email format to HTML
-      $mail->Subject = 'Reset Password Link from CodeWithDary login-register-system app';
+      $mail->Subject = 'Reset Password Link from login-register-system app';
       $mail->Body    = "<p>To reset your password  <a href='$url'>click here</a></p>";
       $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
